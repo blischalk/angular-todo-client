@@ -1,17 +1,5 @@
 'use strict';
 
-/*
-angular.module('toDoApp.controllers', ['toDoApp.services']).controller('ToDoListCtrl', ['$scope', '$http', function ($scope, $http) {
-  $http.get('http://blischalk-todo-server.herokuapp.com/todos.json').success(function(data) {
-    $scope.todos = data;
-  });
-}]).controller('ToDoDetailCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
-  $http.get('http://blischalk-todo-server.herokuapp.com/todos/' + $routeParams.todoId + '.json').success(function(data) {
-    $scope.todo = data;
-  });
-}]);
-*/
-
 angular.module('toDoApp.controllers', ['toDoApp.services']).controller('ToDoCtrl', ['$scope', 'ToDo', function ($scope, ToDo) {
   $scope.todos = ToDo.query()
   $scope.addTodo = function(){
@@ -24,6 +12,14 @@ angular.module('toDoApp.controllers', ['toDoApp.services']).controller('ToDoCtrl
     var todo = $scope.todos[index];
     ToDo.delete({id: todo.id});
     $scope.todos.splice(index, 1);
+  };
+
+}]).controller('ToDoDetailCtrl', ['$scope', '$routeParams', '$location', 'ToDo', function ($scope, $routeParams, $location, ToDo) {
+  $scope.todo = ToDo.get({id: $routeParams.id});
+
+  $scope.deleteTodo = function(id) {
+    ToDo.delete({id: id}, function(){
+      $location.path('/');
+    });
   }
 }]);
-

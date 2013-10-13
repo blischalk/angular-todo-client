@@ -4,15 +4,14 @@ angular.module('toDoApp', ['ngResource', 'toDoApp.controllers', 'toDoApp.service
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/todos', {
-        templateUrl: 'views/main.html',
+        templateUrl: '/views/main.html',
         controller: 'ToDoCtrl'
       }).
-      when('/todos/:todoId', {
-        templateUrl: 'views/detail.html',
+      when('/todos/:id', {
+        templateUrl: '/views/detail.html',
         controller: 'ToDoDetailCtrl'
       })
       .otherwise({
         redirectTo: '/todos'
       });
-      $locationProvider.html5Mode(true);
   });
