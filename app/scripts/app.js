@@ -1,13 +1,18 @@
 'use strict';
 
-angular.module('toDoApp', [])
-  .config(function ($routeProvider) {
+angular.module('toDoApp', ['ngResource', 'toDoApp.controllers', 'toDoApp.services'])
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/', {
+      .when('/todos', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'ToDoCtrl'
+      }).
+      when('/todos/:todoId', {
+        templateUrl: 'views/detail.html',
+        controller: 'ToDoDetailCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/todos'
       });
+      $locationProvider.html5Mode(true);
   });

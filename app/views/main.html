@@ -1,9 +1,12 @@
 <div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="todo in todos">Name: {{todo.name}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+  <h1>Blischalk Todo App!</h1>
+  <div>
+    <form ng-submit="addTodo()">
+      <input type="text" ng-model="newTodo.name" />
+      <input type="submit" value="Add" />
+    </form>
+    <ul>
+      <li ng-repeat="todo in todos">Name: {{todo.name}}, <a ng-click="deleteTodo($index)">Delete</a> </li>
+    </ul>
+  </div>
 </div>
