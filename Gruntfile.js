@@ -24,6 +24,7 @@ module.exports = function (grunt) {
 
   try {
     yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
+    yeomanConfig.dist = '../www'
   } catch (e) {}
 
   grunt.initConfig({
@@ -111,6 +112,9 @@ module.exports = function (grunt) {
       }
     },
     clean: {
+      options: {
+        force: true
+      },
       dist: {
         files: [{
           dot: true,
@@ -270,7 +274,7 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,xml}',
             '.htaccess',
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
